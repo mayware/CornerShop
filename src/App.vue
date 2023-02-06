@@ -3,14 +3,17 @@
   <div class="container">
     <router-view />
   </div>
+  <Footer></Footer>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   components: {
-    Navbar
+    Navbar,
+    Footer,
   }
 }
 </script>
@@ -42,6 +45,32 @@ body {
 }
 
 .container {
-  padding: 4rem 0 .5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4.1rem 0 .5rem 0;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: #343a40;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #495057;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #dee2e6;
 }
 </style>

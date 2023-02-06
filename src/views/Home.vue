@@ -5,21 +5,9 @@
       <img src="../assets/bg/bg-banner.png" alt="" class="bg-banner">
     </div>
     <div class="shop-category-panel">
-      <div class="filter-panel-left">
-        <button class="filter-btn">Cold drinks</button>
-        <button class="filter-btn">Hot drinks</button>
-        <button class="filter-btn">Snacks</button>
-      </div>
-      <div class="filter-panel-right">
-        <!-- <form class="search-form">
-          <input type="text" class="search-input" placeholder="Type something..">
-          <button class="search-btn" type="submit">
-            <span class="material-symbols-outlined">search</span>
-          </button>
-        </form> -->
-      </div>
+      <div class="category-selection-title">Check out our store</div>
     </div>
-    <div class="store-category">
+    <div class="category-selection">
       <div class="item-category">
         <img src="../assets/category-banners/alcohol-banner.jpg" alt="banner-img" class="category-img">
       </div>
@@ -39,7 +27,6 @@
         <img src="../assets/category-banners/tobacco-banner.jpg" alt="banner-img" class="category-img">
       </div>
     </div>
-    <div class="footer"></div>
   </div>
   <!-- Hardcoding items for demo, then use fake data to fill them the store-section-->
   <!-- Use pagination to list through items -->
@@ -53,20 +40,12 @@ export default {
 </script>
 
 <style>
-.content {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  /* padding: .5rem; */
-  /* border: 1px solid #454545; */
-}
-
 .main-top-banner {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  height: 350px;
+  height: 453px;
   width: 100%;
   background-image: url('../assets/bg/bg.jpg');
   background-repeat: no-repeat;
@@ -78,10 +57,19 @@ export default {
 .shop-category-panel {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  /* background: #101010; */
+  justify-content: center;
+  height: 100px;
   padding: .5rem;
   width: 100%;
+  border-bottom: 1px solid #202020;
+  margin-bottom: 1rem;
+}
+
+.category-selection-title {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: .7mm;
+  color: #ced4da;
 }
 
 .filter-panel-left,
@@ -148,21 +136,19 @@ export default {
   transition: 200ms ease-in-out;
 }
 
-.store-category {
+.category-selection {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
+  gap: 10px;
   justify-items: center;
+  padding: 0 1rem 0 1rem;
   width: 100%;
-  /* padding: 1rem; */
-  /* border: 1px solid #42b983; */
 }
 
 .item-category {
-  /* border: 1px solid #454545; */
   height: 350px;
   width: 100%;
-  /* width: 325px; */
+  border-radius: 10px;
 }
 
 .item-category:nth-child(1) {
@@ -177,16 +163,13 @@ export default {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  transition: 200ms ease-in-out;
 }
 
-
-
-
-.footer {
-  padding: .5rem;
-  border-top: 1px solid #454545;
-  background: #202020;
-  margin-top: .5rem;
-  width: 100%;
+.category-img:hover {
+  border: 2px solid #9e0059;
+  transition: 200ms ease-in-out;
 }
 </style>
