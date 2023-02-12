@@ -9,16 +9,22 @@
     </div>
     <div class="category-selection">
       <div class="item-category">
-        <img src="../assets/category-banners/alcohol-banner.jpg" alt="banner-img" class="category-img">
+        <router-link :to="{ name: 'store', params: { id: alc } }">
+          <img src="../assets/category-banners/alcohol-banner.jpg" alt="banner-img" class="category-img">
+        </router-link>
       </div>
       <div class="item-category">
-        <img src="../assets/category-banners/soft-drinks-banner.jpg" alt="banner-img" class="category-img">
+        <router-link :to="{ name: 'store', params: { id: soda } }">
+          <img src="../assets/category-banners/soft-drinks-banner.jpg" alt="banner-img" class="category-img">
+        </router-link>
       </div>
       <div class="item-category">
         <img src="../assets/category-banners/hot-drinks-banner.jpg" alt="banner-img" class="category-img">
       </div>
       <div class="item-category">
-        <img src="../assets/category-banners/snacks-banner.png" alt="banner-img" class="category-img">
+        <router-link :to="{ name: 'store', params: { id: snacks } }">
+          <img src="../assets/category-banners/snacks-banner.jpg" alt="banner-img" class="category-img">
+        </router-link>
       </div>
       <div class="item-category">
         <img src="../assets/category-banners/meal-banner.jpg" alt="banner-img" class="category-img">
@@ -28,14 +34,18 @@
       </div>
     </div>
   </div>
-  <!-- Hardcoding items for demo, then use fake data to fill them the store-section-->
-  <!-- Use pagination to list through items -->
 </template>
 
 <script>
 
 export default {
-  name: 'HomeView',
+  data() {
+    return {
+      alc: '158e839ad0f4f057f869',
+      soda: '7873dbcb044096724539',
+      snacks: '56d2ce3d37ad758ef7a9'
+    }
+  },
 }
 </script>
 

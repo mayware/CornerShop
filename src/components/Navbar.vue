@@ -8,14 +8,14 @@
             <router-link to="/about" class="navbar-link">
                 <span class="material-symbols-outlined navbar-link-icon">sell</span>
                 On sale</router-link>
-            <router-link to="/stores" class="navbar-link">
+            <router-link to="/map" class="navbar-link">
                 <span class="material-symbols-outlined navbar-link-icon">map</span>
                 Our stores</router-link>
         </div>
         <div class="navbar-right">
-            <router-link to="/notifications" class="navbar-link">
+            <!-- <router-link to="/notifications" class="navbar-link">
                 <span class="material-symbols-outlined">notifications</span>
-            </router-link>
+            </router-link> -->
             <router-link to="/cart" class="navbar-link">
                 <span class="material-symbols-outlined">shopping_cart</span>
             </router-link>

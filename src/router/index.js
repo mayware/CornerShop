@@ -4,7 +4,8 @@ import About from '../views/About.vue'
 import Points from '../views/Points.vue'
 import Cart from '../views/Cart.vue'
 import Login from '../views/Login.vue'
-import Stores from '../views/Stores.vue'
+import Map from '../views/Map.vue'
+import Store from '../views/Store.vue'
 
 const routes = [
   {
@@ -33,9 +34,14 @@ const routes = [
     component: Login
   },
   {
-    path: '/stores',
-    name: 'stores',
-    component: Stores
+    path: '/map',
+    name: 'map',
+    component: Map
+  },
+  {
+    path: '/:id',
+    name: 'store',
+    component: Store
   },
 ]
 
