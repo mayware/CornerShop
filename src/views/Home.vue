@@ -11,26 +11,62 @@
       <div class="item-category">
         <router-link :to="{ name: 'store', params: { id: alc } }">
           <img src="../assets/category-banners/alcohol-banner.jpg" alt="banner-img" class="category-img">
+          <div class="overlay-bot">
+            <div class="overlay-text">
+              Alcohol drinks
+            </div>
+          </div>
         </router-link>
       </div>
       <div class="item-category">
         <router-link :to="{ name: 'store', params: { id: soda } }">
           <img src="../assets/category-banners/soft-drinks-banner.jpg" alt="banner-img" class="category-img">
+          <div class="overlay-bot">
+            <div class="overlay-text">
+              Soda & Soft drinks
+            </div>
+          </div>
         </router-link>
       </div>
       <div class="item-category">
-        <img src="../assets/category-banners/hot-drinks-banner.jpg" alt="banner-img" class="category-img">
+        <router-link :to="{ name: 'store', params: { id: snacks } }">
+          <img src="../assets/category-banners/hot-drinks-banner.jpg" alt="banner-img" class="category-img">
+          <div class="overlay-bot">
+            <div class="overlay-text">
+              Hot drinks
+            </div>
+          </div>
+        </router-link>
       </div>
       <div class="item-category">
         <router-link :to="{ name: 'store', params: { id: snacks } }">
           <img src="../assets/category-banners/snacks-banner.jpg" alt="banner-img" class="category-img">
+          <div class="overlay-bot">
+            <div class="overlay-text">
+              Snacks
+            </div>
+          </div>
         </router-link>
       </div>
       <div class="item-category">
-        <img src="../assets/category-banners/meal-banner.jpg" alt="banner-img" class="category-img">
+        <router-link :to="{ name: 'store', params: { id: snacks } }">
+          <img src="../assets/category-banners/meal-banner.jpg" alt="banner-img" class="category-img">
+          <div class="overlay-bot">
+            <div class="overlay-text">
+              Meals & lunchboxes
+            </div>
+          </div>
+        </router-link>
       </div>
       <div class="item-category">
-        <img src="../assets/category-banners/tobacco-banner.jpg" alt="banner-img" class="category-img">
+        <router-link :to="{ name: 'store', params: { id: snacks } }">
+          <img src="../assets/category-banners/tobacco-banner.jpg" alt="banner-img" class="category-img">
+          <div class="overlay-bot">
+            <div class="overlay-text">
+              Tobacco
+            </div>
+          </div>
+        </router-link>
       </div>
     </div>
   </div>
@@ -43,7 +79,7 @@ export default {
     return {
       alc: '158e839ad0f4f057f869',
       soda: '7873dbcb044096724539',
-      snacks: '56d2ce3d37ad758ef7a9'
+      snacks: '56d2ce3d37ad758ef7a9',
     }
   },
 }
@@ -156,6 +192,7 @@ export default {
 }
 
 .item-category {
+  position: relative;
   height: 350px;
   width: 100%;
   border-radius: 10px;
@@ -178,8 +215,27 @@ export default {
   transition: 200ms ease-in-out;
 }
 
-.category-img:hover {
-  border: 2px solid #9e0059;
-  transition: 200ms ease-in-out;
+.overlay-bot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  color: #f1f1f1;
+  width: 100%;
+  height: 100%;
+  transition: .5s ease;
+  opacity: 0;
+  color: white;
+  font-size: 20px;
+  padding: .5rem;
+  text-align: center;
+}
+
+.item-category:hover .overlay-bot {
+  opacity: 1;
 }
 </style>

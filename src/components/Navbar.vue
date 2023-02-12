@@ -16,9 +16,6 @@
             <!-- <router-link to="/notifications" class="navbar-link">
                 <span class="material-symbols-outlined">notifications</span>
             </router-link> -->
-            <router-link to="/cart" class="navbar-link">
-                <span class="material-symbols-outlined">shopping_cart</span>
-            </router-link>
             <div class="login-box">
                 <button class="login-btn" @click="dropdownToggler">
                     <span class="material-symbols-outlined">person_filled</span>
@@ -40,6 +37,9 @@
                     </div>
                 </div>
             </div>
+            <router-link to="/cart" class="navbar-link">
+                <span class="material-symbols-outlined">shopping_cart</span>
+            </router-link>
         </div>
     </nav>
 </template>
@@ -82,6 +82,7 @@ export default {
     box-shadow: 0 2px 10px 0 rgb(0, 0, 0, .4);
     backdrop-filter: blur(15px) brightness(75%) saturate(70%);
     border-bottom: 1px solid #101010;
+    z-index: 1;
 }
 
 .navbar-left,
