@@ -5,9 +5,6 @@
             <router-link to="/points" class="navbar-link">
                 <span class="material-symbols-outlined navbar-link-icon">payments</span>
                 My points</router-link>
-            <router-link to="/about" class="navbar-link">
-                <span class="material-symbols-outlined navbar-link-icon">sell</span>
-                On sale</router-link>
             <router-link to="/map" class="navbar-link">
                 <span class="material-symbols-outlined navbar-link-icon">map</span>
                 Our stores</router-link>

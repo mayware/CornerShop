@@ -1,8 +1,7 @@
 <template>
     <div class="backdrop" @click.self="closeModal">
         <div class="modal">
-            <slot></slot>
-            <div class="actions">
+            <div class="modal-inner">
                 <slot name="links"></slot>
             </div>
         </div>
@@ -20,6 +19,9 @@ export default {
 </script>
 <style scoped>
 .backdrop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     top: 0;
     left: 0;
     right: 0;
@@ -28,32 +30,25 @@ export default {
     background: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100%;
-    overflow: auto;
+    z-index: 100;
 }
-
-/* 
-display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
-     */
 
 .modal {
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 400px;
-    padding: 20px;
+    width: 475px;
+    padding: .5rem;
     margin: 100px auto;
-    background: #3d405b;
+    background: #202020;
     color: #f8f8f8;
     border-radius: 5px;
+}
+
+.modal-inner {
+    background: #101010;
+    border-radius: 5px;
+    width: 100%;
+    padding: .5rem;
 }
 </style>
