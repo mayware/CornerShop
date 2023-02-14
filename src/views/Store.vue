@@ -24,18 +24,20 @@
                         </div>
                         <div class="modal-btn-group">
                             <div class="modal-quantity-box">
-                                <button class="modal-subtract-item-btn" @click="subQnt"
-                                    :disabled="itemQnt == 1">-</button>
+                                <button class="modal-subtract-item-btn" @click="subQnt" :disabled="itemQnt == 1">
+                                    <span class="material-symbols-outlined">remove</span>
+                                </button>
                                 <div class="modal-qnt-field">{{ itemQnt }}</div>
-                                <button class="modal-add-item-btn" @click="addQnt" :disabled="itemQnt == 10">+</button>
+                                <button class="modal-add-item-btn" @click="addQnt" :disabled="itemQnt == 10">
+                                    <span class="material-symbols-outlined">add</span>
+                                </button>
                             </div>
                             <button class="modal-add-to-cart-btn">
-                                <span class="material-symbols-outlined btn-icon">add_shopping_cart</span>
+                                <span class="material-symbols-outlined modal-btn-icon">add_shopping_cart</span>
                                 Add to cart
                             </button>
                         </div>
                     </div>
-
                 </template>
             </Modal>
         </div>
@@ -45,7 +47,29 @@
         <div class="section-title">Store section</div>
         <div class="content-inner">
             <div class="side-filter-panel">
-                <div class="side-pnael-inner"></div>
+                <div class="side-pnael-inner">
+                    <div class="section-breaker"><span class="section-line-breaker">Filter by</span></div>
+                    <div class="filtered-panel-items">
+                        <ul class="panel-list">
+                            <li class="panel-list-item">Popular</li>
+                            <li class="panel-list-item">On sale</li>
+                        </ul>
+                    </div>
+                    <div class="section-breaker"><span class="section-line-breaker">Category</span></div>
+                    <div class="side-panel-category">
+                        <ul class="panel-list">
+                            <li class="panel-list-item">
+                                <router-link :to="{ name: 'store', params: { id: alc } }">Alcohol drinks</router-link>
+                            </li>
+                            <li class="panel-list-item">
+                                <router-link :to="{ name: 'store', params: { id: soda } }">Soda</router-link>
+                            </li>
+                            <li class="panel-list-item">
+                                <router-link :to="{ name: 'store', params: { id: snacks } }">Snacks</router-link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="items-section">
                 <div class="item-block" v-for="item in items" :key="item.id" v-if="items.length"
@@ -58,7 +82,7 @@
                     </div>
                     <div class="item-price">
                         {{ item.price }}
-                        <div class="item-sale">-30%</div>
+                        <div class="item-sale">{{ item.sale }}</div>
                     </div>
                 </div>
                 <div v-else>
@@ -82,6 +106,9 @@ export default {
             showModal: false,
             selectedItem: null,
             itemQnt: 1,
+            alc: '158e839ad0f4f057f869',
+            soda: '7873dbcb044096724539',
+            snacks: '56d2ce3d37ad758ef7a9',
         }
     },
     methods: {
@@ -106,7 +133,7 @@ export default {
             .then(res => res.json())
             .then(data => this.items = data)
             .catch(err => console.log(err.message))
-    }
+    },
 }
 </script>
 <style>
@@ -142,10 +169,44 @@ export default {
 }
 
 .side-pnael-inner {
-    padding: .5rem;
-    border: 1px solid #343434;
     width: 100%;
     height: 100%;
+}
+
+.panel-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.panel-list-item {
+    text-align: left;
+}
+
+.section-breaker {
+    position: relative;
+    text-align: center;
+    font-size: 14px;
+}
+
+.section-breaker::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    background: #202020;
+}
+
+.section-line-breaker {
+    display: inline-block;
+    padding: 0 .5rem;
+    background: #101010;
+    color: #dee2e6;
+    letter-spacing: .7mm;
 }
 
 .items-section {
@@ -199,7 +260,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     text-align: left;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     letter-spacing: .5mm;
     color: #379237;
@@ -211,8 +272,7 @@ export default {
     font-weight: 700;
     letter-spacing: .5mm;
     border-radius: 5px;
-    color: #000;
-    background: #ffc300;
+    color: #ffc300;
 }
 
 .modal-content-top {
@@ -345,7 +405,6 @@ export default {
     background: #144272;
     cursor: pointer;
     transition: 200ms ease-in-out;
-
 }
 
 .modal-add-item-btn:hover,
