@@ -32,10 +32,18 @@
                                     <span class="material-symbols-outlined">add</span>
                                 </button>
                             </div>
-                            <button class="modal-add-to-cart-btn">
-                                <span class="material-symbols-outlined modal-btn-icon">add_shopping_cart</span>
-                                Add to cart
-                            </button>
+                            <div class="modal-item-sale">
+                                {{ selectedItem.sale }}
+                            </div>
+                            <div class="modal-item-price-add-btn">
+                                <div class="modal-item-price">
+                                    {{ selectedItem.price }}
+                                </div>
+                                <button class="modal-add-to-cart-btn">
+                                    <span class="material-symbols-outlined modal-btn-icon">add_shopping_cart</span>
+                                    Add to cart
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </template>
@@ -44,28 +52,39 @@
         <div class="store-banner">
             <img src="../assets/bg/top-panel-banner.png" alt="" class="store-banner-img">
         </div>
-        <div class="section-title">Store section</div>
+        <!-- <div class="section-title">Store section</div> -->
         <div class="content-inner">
             <div class="side-filter-panel">
                 <div class="side-pnael-inner">
-                    <div class="section-breaker"><span class="section-line-breaker">Filter by</span></div>
+                    <div class="section-breaker"><span class="section-line-breaker">Filter products by</span></div>
                     <div class="filtered-panel-items">
                         <ul class="panel-list">
-                            <li class="panel-list-item">Popular</li>
-                            <li class="panel-list-item">On sale</li>
+                            <li class="panel-list-item">
+                                <a href="javascript:void(0)" class="panel-link">
+                                    <input type="checkbox" name="filterCheck" class="filter-check">
+                                    Popular</a>
+                            </li>
+                            <li class="panel-list-item">
+                                <a href="javascript:void(0)" class="panel-link">
+                                    <input type="checkbox" name="filterCheck" class="filter-check">
+                                    On sale</a>
+                            </li>
                         </ul>
                     </div>
-                    <div class="section-breaker"><span class="section-line-breaker">Category</span></div>
+                    <div class="section-breaker"><span class="section-line-breaker">Products section</span></div>
                     <div class="side-panel-category">
                         <ul class="panel-list">
                             <li class="panel-list-item">
-                                <router-link :to="{ name: 'store', params: { id: alc } }">Alcohol drinks</router-link>
+                                <router-link :to="{ name: 'store', params: { id: alc } }" class="panel-link">Alcohol
+                                    drinks & Spirits</router-link>
                             </li>
                             <li class="panel-list-item">
-                                <router-link :to="{ name: 'store', params: { id: soda } }">Soda</router-link>
+                                <router-link :to="{ name: 'store', params: { id: soda } }" class="panel-link">Soda &
+                                    Sparkling drinks</router-link>
                             </li>
                             <li class="panel-list-item">
-                                <router-link :to="{ name: 'store', params: { id: snacks } }">Snacks</router-link>
+                                <router-link :to="{ name: 'store', params: { id: snacks } }"
+                                    class="panel-link">Snacks</router-link>
                             </li>
                         </ul>
                     </div>
@@ -85,8 +104,13 @@
                         <div class="item-sale">{{ item.sale }}</div>
                     </div>
                 </div>
-                <div v-else>
-                    <p>Loading page...</p>
+                <div class="loading-items" v-else>
+                    <div class="lds-ring">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -137,8 +161,64 @@ export default {
 }
 </script>
 <style>
+/* Spinner */
+
+.loading-items {
+    position: absolute;
+    top: 50%;
+    left: 100px;
+    right: 100px;
+    width: 100%;
+}
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #adb5bd;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #adb5bd transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Spinner */
+
+
+
+
 .store-banner {
-    border: 1px solid #343434;
     height: 175px;
     width: 100%;
 }
@@ -151,26 +231,33 @@ export default {
 
 .content-inner {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     row-gap: 5px;
     width: 100%;
 }
 
 .section-title {
     text-align: left;
+    border-bottom: 1px solid #202020;
+    width: 100%;
 }
 
 .side-filter-panel {
     display: flex;
     align-items: center;
     padding: 1rem;
-    border: 1px solid #343434;
+    border-right: 1px solid #202020;
     width: 100%;
 }
 
 .side-pnael-inner {
     width: 100%;
     height: 100%;
+}
+
+.side-panel-category {
+    display: flex;
+    flex-direction: column;
 }
 
 .panel-list {
@@ -180,7 +267,36 @@ export default {
 }
 
 .panel-list-item {
-    text-align: left;
+    display: flex;
+    align-items: center;
+    margin: .5rem;
+}
+
+.panel-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .3mm;
+    text-decoration: none;
+    color: #adb5bd;
+    padding: .5rem;
+    border-radius: 5px;
+    transition: 200ms ease-in-out;
+}
+
+.panel-link:hover {
+    background: #202020;
+    transition: 200ms ease-in-out;
+}
+
+.panel-link.router-link-exact-active {
+    color: #42b983;
+}
+
+.filter-check {
+    margin-right: .5rem;
 }
 
 .section-breaker {
@@ -212,12 +328,12 @@ export default {
 .items-section {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-column: 2/5;
+    grid-column: 2/6;
     row-gap: 20px;
     column-gap: 5px;
     padding: .5rem;
     width: 100%;
-    border: 1px solid #343434;
+    border-bottom: 1px solid #202020;
 }
 
 .item-block {
@@ -321,8 +437,6 @@ export default {
     align-items: center;
     flex-direction: column;
     margin-top: .5rem;
-    padding: .5rem;
-    background: #151515;
     border-radius: 5px;
 }
 
@@ -360,7 +474,7 @@ export default {
     align-items: center;
     justify-content: center;
     height: 35px;
-    width: 75px;
+    width: 60px;
     background: #202020;
     font-size: 16px;
     font-weight: 700;
@@ -371,6 +485,34 @@ export default {
 
 .modal-qnt-field:focus {
     outline: none;
+}
+
+.modal-item-sale {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .5mm;
+    padding: .5rem;
+    border-radius: 5px;
+    color: #ffc300;
+}
+
+.modal-item-price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .5mm;
+    padding: .7rem .5rem .7rem .5rem;
+    background: #202020;
+    border-radius: 5px;
+    color: #379237;
+    margin-right: .3rem;
+}
+
+.modal-item-price-add-btn {
+    display: flex;
+    align-items: center;
 }
 
 .modal-add-item-btn {
@@ -421,7 +563,7 @@ export default {
 
 .modal-add-item-btn:disabled:hover,
 .modal-subtract-item-btn:disabled:hover {
-    background-color: #495057;
+    background-color: none;
 }
 
 .modal-add-to-cart-btn {
