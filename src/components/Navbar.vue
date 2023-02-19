@@ -10,9 +10,6 @@
                 Our stores</router-link>
         </div>
         <div class="navbar-right">
-            <!-- <router-link to="/notifications" class="navbar-link">
-                <span class="material-symbols-outlined">notifications</span>
-            </router-link> -->
             <div class="login-box">
                 <button class="login-btn" @click="dropdownToggler">
                     <span class="material-symbols-outlined">person_filled</span>

@@ -6,25 +6,10 @@
         <div class="store-banner">
             <img src="../assets/bg/top-panel-banner.png" alt="" class="store-banner-img">
         </div>
-        <!-- <div class="section-title">Store section</div> -->
+        <div class="section-title">Store section</div>
         <div class="content-inner">
             <div class="side-filter-panel">
                 <div class="side-pnael-inner">
-                    <div class="section-breaker"><span class="section-line-breaker">Filter products by</span></div>
-                    <div class="filtered-panel-items">
-                        <ul class="panel-list">
-                            <li class="panel-list-item">
-                                <a href="javascript:void(0)" class="panel-link">
-                                    <input type="checkbox" name="filterCheck" class="filter-check">
-                                    Popular</a>
-                            </li>
-                            <li class="panel-list-item">
-                                <a href="javascript:void(0)" class="panel-link">
-                                    <input type="checkbox" name="filterCheck" class="filter-check">
-                                    On sale</a>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="section-breaker"><span class="section-line-breaker">Products section</span></div>
                     <div class="side-panel-category">
                         <ul class="panel-list">
@@ -45,17 +30,34 @@
                 </div>
             </div>
             <div class="items-section">
-                <div class="item-block" v-for="item in items" :key="item.id" v-if="items.length" @click="toggleModal(item)">
+                <div class="item-block" v-for="item, index in items" :key="item.id" v-if="items.length">
                     <div class="item-poster">
-                        <img class="item-img" :src="`${item.image}`" alt="item-image">
+                        <img class="item-img" :src="`${item.image}`" alt="item-image" @click="toggleModal(item)">
                     </div>
                     <div class="item-desc">
                         {{ item.title }}
                     </div>
-                    <div class="item-price">
-                        {{ item.price }}
-                        <div class="item-sale">{{ item.sale }}</div>
+                    <div class="item-box-bottom">
+                        <div class="item-price">
+                            {{ item.price }}
+                        </div>
+                        <div class="item-sale">
+                            {{ item.sale }}
+                        </div>
+                        <div class="quantity-box">
+                            <select class="qnt-field">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
                     </div>
+                    <button class="add-to-cart-btn" @click="printProps">
+                        <span class="material-symbols-outlined modal-btn-icon">add_shopping_cart</span>
+                        Add to cart
+                    </button>
                 </div>
                 <div class="loading-items" v-else>
                     <div class="lds-ring">
@@ -92,6 +94,12 @@ export default {
             this.showModal = !this.showModal;
             this.selectedItem = item;
             this.itemQnt = 1;
+        },
+        addQnt(value) {
+            console.log(value)
+        },
+        subQnt() {
+
         },
     },
     mounted() {
@@ -158,7 +166,6 @@ export default {
 }
 
 /* Spinner */
-
 
 
 
@@ -333,5 +340,54 @@ export default {
     letter-spacing: .5mm;
     border-radius: 5px;
     color: #ffc300;
+}
+
+.add-to-cart-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    background: #003566;
+    color: #ced4da;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 200ms ease-in-out;
+}
+
+.add-to-cart-btn:hover {
+    background: #ffb703;
+    color: #000;
+    transition: 200ms ease-in-out;
+}
+
+.item-box-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quantity-box {
+    display: flex;
+    align-items: center;
+}
+
+.qnt-field {
+    text-align: center;
+    height: 35px;
+    width: 60px;
+    background: #202020;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ced4da;
+    border: 1px solid #343434;
+    border-radius: 5px;
+}
+
+.item-price-add-btn {
+    display: flex;
+    align-items: center;
 }
 </style>

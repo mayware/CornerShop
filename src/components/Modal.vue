@@ -18,19 +18,7 @@
                     </div>
                 </div>
                 <div class="modal-content-bottom">
-                    <div class="modal-qnt-label">
-                        <span class="modal-qnt-label-text">Quantity:</span>
-                    </div>
                     <div class="modal-btn-group">
-                        <div class="modal-quantity-box">
-                            <button class="modal-subtract-item-btn" @click="subQnt" :disabled="itemQnt == 1">
-                                <span class="material-symbols-outlined">remove</span>
-                            </button>
-                            <div class="modal-qnt-field">{{ itemQnt }}</div>
-                            <button class="modal-add-item-btn" @click="addQnt" :disabled="itemQnt == 10">
-                                <span class="material-symbols-outlined">add</span>
-                            </button>
-                        </div>
                         <div class="modal-item-sale">
                             {{ selected.sale }}
                         </div>
@@ -38,10 +26,7 @@
                             <div class="modal-item-price">
                                 {{ selected.price }}
                             </div>
-                            <button class="modal-add-to-cart-btn">
-                                <span class="material-symbols-outlined modal-btn-icon">add_shopping_cart</span>
-                                Add to cart
-                            </button>
+
                         </div>
                     </div>
                 </div>
@@ -70,7 +55,7 @@ export default {
             if (this.itemQnt > 1) {
                 this.itemQnt--;
             }
-        }
+        },
     },
 }
 </script>
