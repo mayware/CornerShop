@@ -6,31 +6,30 @@
         <div class="store-banner">
             <img src="../assets/bg/top-panel-banner.png" alt="" class="store-banner-img">
         </div>
-        <div class="section-title">Store section</div>
+        <div class="top-section-panel">
+            <ul class="panel-list">
+                    <li class="panel-list-item">
+                        <router-link :to="{ name: 'store', params: { id: alc } }" class="panel-link">Alcohol
+                         drinks & Spirits</router-link>
+                    </li>
+                    <li class="panel-list-item">
+                        <router-link :to="{ name: 'store', params: { id: soda } }" class="panel-link">Soda &
+                         Sparkling drinks</router-link>
+                    </li>
+                    <li class="panel-list-item">
+                        <router-link :to="{ name: 'store', params: { id: snacks } }"
+                         class="panel-link">Snacks</router-link>
+                     </li>
+            </ul>
+        </div>
         <div class="content-inner">
-            <div class="side-filter-panel">
-                <div class="side-pnael-inner">
-                    <div class="section-breaker"><span class="section-line-breaker">Products section</span></div>
-                    <div class="side-panel-category">
-                        <ul class="panel-list">
-                            <li class="panel-list-item">
-                                <router-link :to="{ name: 'store', params: { id: alc } }" class="panel-link">Alcohol
-                                    drinks & Spirits</router-link>
-                            </li>
-                            <li class="panel-list-item">
-                                <router-link :to="{ name: 'store', params: { id: soda } }" class="panel-link">Soda &
-                                    Sparkling drinks</router-link>
-                            </li>
-                            <li class="panel-list-item">
-                                <router-link :to="{ name: 'store', params: { id: snacks } }"
-                                    class="panel-link">Snacks</router-link>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="side-panel">
+                <div class="side-panel-inner">
+                    <Cart :inCart="cartData"/>
                 </div>
             </div>
             <div class="items-section">
-                <div class="item-block" v-for="item, index in items" :key="item.id" v-if="items.length">
+                <div class="item-block" v-for="item in items" :key="item.id" v-if="items.length">
                     <div class="item-poster">
                         <img class="item-img" :src="`${item.image}`" alt="item-image" @click="toggleModal(item)">
                     </div>
@@ -46,15 +45,15 @@
                         </div>
                         <div class="quantity-box">
                             <select class="qnt-field">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+                            <option class="option-select" value="1">1</option>
+                            <option class="option-select" value="2">2</option>
+                            <option class="option-select" value="3">3</option>
+                            <option class="option-select" value="4">4</option>
+                            <option class="option-select" value="5">5</option>
+                             </select>
                         </div>
                     </div>
-                    <button class="add-to-cart-btn" @click="printProps">
+                    <button class="add-to-cart-btn" @click="addToCart(item)">
                         <span class="material-symbols-outlined modal-btn-icon">add_shopping_cart</span>
                         Add to cart
                     </button>
@@ -73,14 +72,20 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 import Modal from '../components/Modal.vue'
+import Cart from '../components/Cart.vue'
 export default {
     components: {
-        Modal
+        Modal,
+        Cart,
     },
     data() {
         return {
+            inCart:[],
+            cartData:[],
             items: [],
+            itemObj: null,
             id: this.$route.params.id,
             showModal: false,
             selectedItem: null,
@@ -95,11 +100,13 @@ export default {
             this.selectedItem = item;
             this.itemQnt = 1;
         },
-        addQnt(value) {
-            console.log(value)
-        },
-        subQnt() {
-
+        addToCart(item){
+            this.inCart = [];
+            this.inCart.push(item.image, item.title, item.price, item.id)
+            this.itemObj = {...this.inCart}
+            this.cartData = [];
+            this.cartData.push(this.itemObj)
+            console.log(JSON.stringify(this.cartData));
         },
     },
     mounted() {
@@ -168,7 +175,6 @@ export default {
 /* Spinner */
 
 
-
 .store-banner {
     height: 175px;
     width: 100%;
@@ -182,22 +188,22 @@ export default {
 
 .content-inner {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    row-gap: 5px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
     width: 100%;
 }
 
-.section-title {
+.top-section-panel {
     text-align: left;
     border-bottom: 1px solid #202020;
     width: 100%;
 }
 
-.side-filter-panel {
-    display: flex;
-    align-items: center;
+.side-panel {
     padding: 1rem;
-    border-right: 1px solid #202020;
+    grid-column: 5/7;
+    grid-row: 1;
+    border-left: 1px solid #202020;
     width: 100%;
 }
 
@@ -206,12 +212,9 @@ export default {
     height: 100%;
 }
 
-.side-panel-category {
-    display: flex;
-    flex-direction: column;
-}
-
 .panel-list {
+    display: flex;
+    align-items: center;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -279,7 +282,7 @@ export default {
 .items-section {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-column: 2/6;
+    grid-column: 1/5;
     row-gap: 20px;
     column-gap: 5px;
     padding: .5rem;
@@ -347,7 +350,7 @@ export default {
     align-items: center;
     justify-content: center;
     padding: .5rem;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     border: none;
     background: #003566;
@@ -376,8 +379,8 @@ export default {
 
 .qnt-field {
     text-align: center;
-    height: 35px;
-    width: 60px;
+    height: 30px;
+    width: 50px;
     background: #202020;
     font-size: 16px;
     font-weight: 700;

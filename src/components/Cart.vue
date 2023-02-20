@@ -4,17 +4,19 @@
             <div class="cart-top">
                 <span class="cart-title">Shopping cart</span>
             </div>
-            <div class="cart-content">
-                <div class="cart-item">
-                    <div class="cart-item-image"></div>
+            <div class="cart-content" >
+                <!-- <div class="cart-item" v-for="prod, index in inCart" :key="prod.id" v-if="inCart.length">
+                    <div class="cart-item-image">
+                        <img class="item-img" :src="`${prod.image}`" alt="item-image">
+                    </div>
                     <div class="cart-item-dssc-price">
-                        <div class="cart-item-desc"></div>
-                        <div class="cart-item-price"></div>
+                        <div class="cart-item-desc">{{ prod.title }} {{ prod.id }}</div>
+                        <div class="cart-item-price">{{ prod.price }}</div>
                     </div>
                     <button class="cart-item-remove-btn">
                         <span class="material-symbols-outlined">delete</span>
                     </button>
-                </div>
+                </div> -->
             </div>
             <div class="cart-checkout">
                 <div class="sub-total">
@@ -28,7 +30,12 @@
 </template>
 <script>
 export default {
-    props: ['added'],
+    props: ["inCart"],
+    data(){
+        return {
+            cartItems:[],
+        }
+    }
 }
 </script>
 <style>
@@ -61,7 +68,7 @@ export default {
     grid-template-columns: 1fr;
     row-gap: 5px;
     overflow-y: auto;
-    max-height: 250px;
+    max-height: 350px;
     width: 100%;
     padding: .5rem;
     background: #202020;
@@ -71,16 +78,14 @@ export default {
 .cart-item {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 5px;
+    gap: 10px;
     width: 100%;
-    max-height: 100px;
     padding: .5rem;
     background: #101010;
 }
 
 .cart-item-image {
     border: 1px solid #444;
-    padding: 1rem;
     height: 100%;
     width: 105px;
 }
@@ -93,12 +98,16 @@ export default {
 }
 
 .cart-item-desc {
+    display: flex;
+    align-items: center;
     border: 1px solid #444;
     padding: 1rem;
     width: 100%;
 }
 
 .cart-item-price {
+    display: flex;
+    align-items: center;
     border: 1px solid #444;
     padding: 1rem;
     width: 100%;

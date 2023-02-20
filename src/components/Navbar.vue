@@ -31,9 +31,6 @@
                     </div>
                 </div>
             </div>
-            <router-link to="/cart" class="navbar-link">
-                <span class="material-symbols-outlined">shopping_cart</span>
-            </router-link>
         </div>
     </nav>
 </template>
