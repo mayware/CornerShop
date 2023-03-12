@@ -8,25 +8,22 @@
         </div>
         <div class="top-section-panel">
             <ul class="panel-list">
-                    <li class="panel-list-item">
-                        <router-link :to="{ name: 'store', params: { id: alc } }" class="panel-link">Alcohol
-                         drinks & Spirits</router-link>
-                    </li>
-                    <li class="panel-list-item">
-                        <router-link :to="{ name: 'store', params: { id: soda } }" class="panel-link">Soda &
-                         Sparkling drinks</router-link>
-                    </li>
-                    <li class="panel-list-item">
-                        <router-link :to="{ name: 'store', params: { id: snacks } }"
-                         class="panel-link">Snacks</router-link>
-                     </li>
+                <li class="panel-list-item">
+                    <router-link :to="{ name: 'store', params: { id: alc } }" class="panel-link">Alcohol
+                        drinks & Spirits</router-link>
+                </li>
+                <li class="panel-list-item">
+                    <router-link :to="{ name: 'store', params: { id: soda } }" class="panel-link">Soda &
+                        Sparkling drinks</router-link>
+                </li>
+                <li class="panel-list-item">
+                    <router-link :to="{ name: 'store', params: { id: snacks } }" class="panel-link">Snacks</router-link>
+                </li>
             </ul>
         </div>
         <div class="content-inner">
             <div class="side-panel">
-                <div class="side-panel-inner">
-                    <Cart :inCart="cartData"/>
-                </div>
+                <div class="side-panel-inner"></div>
             </div>
             <div class="items-section">
                 <div class="item-block" v-for="item in items" :key="item.id" v-if="items.length">
@@ -45,12 +42,12 @@
                         </div>
                         <div class="quantity-box">
                             <select class="qnt-field">
-                            <option class="option-select" value="1">1</option>
-                            <option class="option-select" value="2">2</option>
-                            <option class="option-select" value="3">3</option>
-                            <option class="option-select" value="4">4</option>
-                            <option class="option-select" value="5">5</option>
-                             </select>
+                                <option class="option-select" value="1">1</option>
+                                <option class="option-select" value="2">2</option>
+                                <option class="option-select" value="3">3</option>
+                                <option class="option-select" value="4">4</option>
+                                <option class="option-select" value="5">5</option>
+                            </select>
                         </div>
                     </div>
                     <button class="add-to-cart-btn" @click="addToCart(item)">
@@ -72,18 +69,21 @@
 </template>
 
 <script>
-import { ref } from 'vue';
 import Modal from '../components/Modal.vue'
-import Cart from '../components/Cart.vue'
+import store from '@/store/store.js'
+
 export default {
     components: {
         Modal,
-        Cart,
+    },
+    // props: {
+    //     product: Object,
+    //     cart: Array
+    // },
+    computed: {
     },
     data() {
         return {
-            inCart:[],
-            cartData:[],
             items: [],
             itemObj: null,
             id: this.$route.params.id,
@@ -100,14 +100,13 @@ export default {
             this.selectedItem = item;
             this.itemQnt = 1;
         },
-        addToCart(item){
-            this.inCart = [];
-            this.inCart.push(item.image, item.title, item.price, item.id)
-            this.itemObj = {...this.inCart}
-            this.cartData = [];
-            this.cartData.push(this.itemObj)
-            console.log(JSON.stringify(this.cartData));
-        },
+        addToCart(product) {
+            store.commit('addToCart', product)
+        }
+        // addToCart(product) {
+        //     this.cart.push(product);
+        //     this.$emit('cart-updated', this.cart);
+        // }
     },
     mounted() {
         fetch('https://api.npoint.io/' + this.id)

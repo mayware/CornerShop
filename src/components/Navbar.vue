@@ -10,6 +10,9 @@
                 Our stores</router-link>
         </div>
         <div class="navbar-right">
+            <router-link to="/cart" class="navbar-link" :cart="cart" :add-to-cart="addToCart">
+                <span class="material-symbols-outlined">shopping_cart</span>
+            </router-link>
             <div class="login-box">
                 <button class="login-btn" @click="dropdownToggler">
                     <span class="material-symbols-outlined">person_filled</span>
@@ -36,6 +39,10 @@
 </template>
 <script>
 export default {
+    props: {
+        cart: Array,
+        addToCart: Function
+    },
     data() {
         return {
             show: false

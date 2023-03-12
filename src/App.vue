@@ -1,7 +1,9 @@
 <template>
+  <!-- <Navbar :cart="cart" :add-to-cart="addToCart" @cart-updated="cart = $event" /> -->
   <Navbar />
   <div class="container">
-    <router-view :key="$route.path" />
+    <!-- <router-view :key="$route.path" :cart="cart" :add-to-cart="addToCart" /> -->
+    <router-view :key="$route.path" :add-to-cart="addToCart" />
   </div>
   <Footer></Footer>
 </template>
@@ -9,12 +11,38 @@
 <script>
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
+import store from '@/store/store.js'
+``
 
 export default {
   components: {
     Navbar,
     Footer,
-  }
+  },
+  data() {
+    return {
+      // cart: [],
+    }
+  },
+  methods: {
+    addToCart(product) {
+      store.commit('addToCart', product)
+    },
+    // addToCart(product) {
+    //   store.commit('addToCart', product)
+    //   this.$emit('cart-updated', store.state.cart)
+    // },
+    updateCart(cart) {
+      this.cart = cart
+    },
+  },
+  //   addToCart(product) {
+  //     this.cart.push(product)
+  //   },
+  //   updateCart(cart) {
+  //     this.cart = cart;
+  //   }
+  // },
 }
 </script>
 <style>

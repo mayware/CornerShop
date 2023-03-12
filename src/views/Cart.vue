@@ -1,42 +1,58 @@
 <template>
     <div class="content">
-        <div class="cart">
-            <div class="cart-top">
-                <span class="cart-title">Shopping cart</span>
-            </div>
-            <div class="cart-content" >
-                <!-- <div class="cart-item" v-for="prod, index in inCart" :key="prod.id" v-if="inCart.length">
-                    <div class="cart-item-image">
-                        <img class="item-img" :src="`${prod.image}`" alt="item-image">
-                    </div>
-                    <div class="cart-item-dssc-price">
-                        <div class="cart-item-desc">{{ prod.title }} {{ prod.id }}</div>
-                        <div class="cart-item-price">{{ prod.price }}</div>
-                    </div>
-                    <button class="cart-item-remove-btn">
-                        <span class="material-symbols-outlined">delete</span>
-                    </button>
-                </div> -->
-            </div>
-            <div class="cart-checkout">
-                <div class="sub-total">
-                    <span class="sub-total-title">Subtotal:</span>
-                    <span class="sub-total-value"></span>
-                </div>
-                <button class="checkout-btn">Go to checkout</button>
-            </div>
-        </div>
+        <h2>Shopping Cart:</h2>
+        <ul>
+            <li v-for="(item, index) in cart" :key="index">
+                {{ item.title }} - {{ item.price }}
+            </li>
+        </ul>
+    </div>
+</template>
+  
+<script>
+import { mapState } from 'vuex'
+
+export default {
+    computed: {
+        ...mapState(['cart'])
+    }
+}
+</script>
+  
+<!-- <template>
+    <div class="content">
+        Shopping Cart: {{ cart }}
     </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
-    props: ["inCart"],
-    data(){
-        return {
-            cartItems:[],
-        }
+    computed: {
+        ...mapState(['cart'])
     }
 }
+
+
+// export default {
+//     data() {
+//         return {}
+//     },
+//     // props: {
+//     //     cart: Array,
+//     //     addToCart: Function
+//     // },
+//     mounted() {
+//         store.watch(() => this.$store.state.cart, (cart) => {
+//             this.cart = cart
+//         })
+//     }
+//     // methods: {
+//     //     addToCart(product) {
+//     //         this.cart.push(product);
+//     //         this.$emit('cart-updated', this.cart);
+//     //     }
+//     // }
+// }
 </script>
 <style>
 .cart {
@@ -167,4 +183,4 @@ export default {
     background: #205295;
     transition: 200ms ease-in-out;
 }
-</style>
+</style> -->
