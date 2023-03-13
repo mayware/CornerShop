@@ -1,8 +1,6 @@
 <template>
-  <!-- <Navbar :cart="cart" :add-to-cart="addToCart" @cart-updated="cart = $event" /> -->
   <Navbar />
   <div class="container">
-    <!-- <router-view :key="$route.path" :cart="cart" :add-to-cart="addToCart" /> -->
     <router-view :key="$route.path" :add-to-cart="addToCart" />
   </div>
   <Footer></Footer>
@@ -19,30 +17,14 @@ export default {
     Navbar,
     Footer,
   },
-  data() {
-    return {
-      // cart: [],
-    }
-  },
   methods: {
     addToCart(product) {
       store.commit('addToCart', product)
     },
-    // addToCart(product) {
-    //   store.commit('addToCart', product)
-    //   this.$emit('cart-updated', store.state.cart)
-    // },
     updateCart(cart) {
       this.cart = cart
     },
   },
-  //   addToCart(product) {
-  //     this.cart.push(product)
-  //   },
-  //   updateCart(cart) {
-  //     this.cart = cart;
-  //   }
-  // },
 }
 </script>
 <style>
@@ -76,12 +58,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4.1rem 0 .5rem 0;
+  padding: 4.1rem 0 0 0;
 }
 
 .content {
   display: flex;
-  align-items: center;
   flex-direction: column;
   width: 100%;
 }

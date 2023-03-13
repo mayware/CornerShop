@@ -7,23 +7,26 @@
             <img src="../assets/bg/top-panel-banner.png" alt="" class="store-banner-img">
         </div>
         <div class="top-section-panel">
-            <ul class="panel-list">
-                <li class="panel-list-item">
-                    <router-link :to="{ name: 'store', params: { id: alc } }" class="panel-link">Alcohol
-                        drinks & Spirits</router-link>
-                </li>
-                <li class="panel-list-item">
-                    <router-link :to="{ name: 'store', params: { id: soda } }" class="panel-link">Soda &
-                        Sparkling drinks</router-link>
-                </li>
-                <li class="panel-list-item">
-                    <router-link :to="{ name: 'store', params: { id: snacks } }" class="panel-link">Snacks</router-link>
-                </li>
-            </ul>
+
         </div>
         <div class="content-inner">
             <div class="side-panel">
-                <div class="side-panel-inner"></div>
+                <div class="side-panel-inner">
+                    <ul class="panel-list">
+                        <li class="panel-list-item">
+                            <router-link :to="{ name: 'store', params: { id: alc } }" class="panel-link">Alcohol
+                                drinks & Spirits</router-link>
+                        </li>
+                        <li class="panel-list-item">
+                            <router-link :to="{ name: 'store', params: { id: soda } }" class="panel-link">Soda &
+                                Sparkling drinks</router-link>
+                        </li>
+                        <li class="panel-list-item">
+                            <router-link :to="{ name: 'store', params: { id: snacks } }"
+                                class="panel-link">Snacks</router-link>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="items-section">
                 <div class="item-block" v-for="item in items" :key="item.id" v-if="items.length">
@@ -76,10 +79,6 @@ export default {
     components: {
         Modal,
     },
-    // props: {
-    //     product: Object,
-    //     cart: Array
-    // },
     computed: {
     },
     data() {
@@ -103,10 +102,6 @@ export default {
         addToCart(product) {
             store.commit('addToCart', product)
         }
-        // addToCart(product) {
-        //     this.cart.push(product);
-        //     this.$emit('cart-updated', this.cart);
-        // }
     },
     mounted() {
         fetch('https://api.npoint.io/' + this.id)
@@ -200,9 +195,9 @@ export default {
 
 .side-panel {
     padding: 1rem;
-    grid-column: 5/7;
+    grid-column: 1/2;
     grid-row: 1;
-    border-left: 1px solid #202020;
+    border-right: 1px solid #202020;
     width: 100%;
 }
 
@@ -214,6 +209,8 @@ export default {
 .panel-list {
     display: flex;
     align-items: center;
+    flex-direction: column;
+    text-align: start;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -223,6 +220,7 @@ export default {
     display: flex;
     align-items: center;
     margin: .5rem;
+    width: 100%;
 }
 
 .panel-link {
@@ -281,7 +279,7 @@ export default {
 .items-section {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-column: 1/5;
+    grid-column: 2/7;
     row-gap: 20px;
     column-gap: 5px;
     padding: .5rem;

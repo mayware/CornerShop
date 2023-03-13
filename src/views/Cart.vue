@@ -1,11 +1,32 @@
 <template>
     <div class="content">
-        <h2>Shopping Cart:</h2>
-        <ul>
-            <li v-for="(item, index) in cart" :key="index">
-                {{ item.title }} - {{ item.price }}
-            </li>
-        </ul>
+        <div class="cart-block">
+            <div class="cart-top">
+                <span class="cart-title">Shopping cart</span>
+            </div>
+            <div class="cart-content">
+                <div class="cart-item" v-for="(item, index) in cart" :key="index">
+                    <div class="cart-item-image">
+                        <img class="cart-item-img" :src="`${item.image}`" alt="item-image">
+                    </div>
+                    <div class="cart-item-desc-price">
+                        <div class="cart-item-title">
+                            {{ item.title }}
+                        </div>
+                        <div class="cart-item-desc">
+                            {{ item.description }}
+                        </div>
+                        <div class="cart-item-price">
+                            {{ item.price }}
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-checkout">
+                    <div class="sub-total-title">Subtotal:</div>
+                    <div class="checkout-btn">Chekout</div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
   
@@ -19,41 +40,6 @@ export default {
 }
 </script>
   
-<!-- <template>
-    <div class="content">
-        Shopping Cart: {{ cart }}
-    </div>
-</template>
-<script>
-import { mapState } from 'vuex'
-export default {
-    computed: {
-        ...mapState(['cart'])
-    }
-}
-
-
-// export default {
-//     data() {
-//         return {}
-//     },
-//     // props: {
-//     //     cart: Array,
-//     //     addToCart: Function
-//     // },
-//     mounted() {
-//         store.watch(() => this.$store.state.cart, (cart) => {
-//             this.cart = cart
-//         })
-//     }
-//     // methods: {
-//     //     addToCart(product) {
-//     //         this.cart.push(product);
-//     //         this.$emit('cart-updated', this.cart);
-//     //     }
-//     // }
-// }
-</script>
 <style>
 .cart {
     display: flex;
@@ -68,7 +54,7 @@ export default {
 .cart-top {
     display: flex;
     justify-content: flex-start;
-    padding: .5rem;
+    padding: 1rem;
     width: 100%;
 }
 
@@ -79,54 +65,74 @@ export default {
     color: #6c757d;
 }
 
+.card-block {
+    display: flex;
+    align-items: center;
+}
+
 .cart-content {
     display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 5px;
+    grid-template-columns: repeat(6, 1fr);
+    row-gap: 10px;
     overflow-y: auto;
-    max-height: 350px;
+    max-height: 450px;
     width: 100%;
     padding: .5rem;
-    background: #202020;
+    background: #6c757d;
     border-radius: 5px;
 }
 
 .cart-item {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-    width: 100%;
+    grid-column: 1/5;
+    display: flex;
+    align-items: center;
     padding: .5rem;
     background: #101010;
 }
 
 .cart-item-image {
     border: 1px solid #444;
-    height: 100%;
-    width: 105px;
+    height: 135px;
+    width: 150px;
+    margin-right: .5rem;
 }
 
-.cart-item-dssc-price {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    row-gap: 3px;
-    grid-column: 2/ 5;
+.cart-item-img {
+    height: 100%;
+    width: 100%;
+}
+
+.cart-item-desc-price {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    max-width: 450px;
+    height: 100%;
+}
+
+.cart-item-title {
+    text-align: start;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: .5rem;
+    color: #fb5607;
 }
 
 .cart-item-desc {
-    display: flex;
-    align-items: center;
-    border: 1px solid #444;
-    padding: 1rem;
-    width: 100%;
+    text-align: start;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ced4da;
+    margin-bottom: .5rem;
 }
 
 .cart-item-price {
     display: flex;
     align-items: center;
-    border: 1px solid #444;
-    padding: 1rem;
-    width: 100%;
+    text-align: start;
+    font-size: 16px;
+    font-weight: 700;
+    color: #06d6a0;
 }
 
 .cart-item-remove-btn {
@@ -150,11 +156,13 @@ export default {
 }
 
 .cart-checkout {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: .5rem;
+    grid-row: 1;
+    grid-column: 5/7;
     padding: .5rem;
+    height: 100%;
+    margin-left: .5rem;
+    background: #151515;
+    border: 1px solid #000;
 }
 
 .sub-total-title {
@@ -183,4 +191,4 @@ export default {
     background: #205295;
     transition: 200ms ease-in-out;
 }
-</style> -->
+</style>
