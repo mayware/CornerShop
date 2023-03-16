@@ -29,7 +29,7 @@
         </router-link>
       </div>
       <div class="item-category">
-        <router-link :to="{ name: 'store', params: { id: snacks } }">
+        <router-link :to="{ name: 'store', params: { id: hot } }">
           <img src="../assets/category-banners/hot-drinks-banner.jpg" alt="banner-img" class="category-img">
           <div class="overlay-bot">
             <div class="overlay-text">
@@ -49,7 +49,7 @@
         </router-link>
       </div>
       <div class="item-category">
-        <router-link :to="{ name: 'store', params: { id: snacks } }">
+        <router-link :to="{ name: 'store', params: { id: meals } }">
           <img src="../assets/category-banners/meal-banner.jpg" alt="banner-img" class="category-img">
           <div class="overlay-bot">
             <div class="overlay-text">
@@ -59,7 +59,7 @@
         </router-link>
       </div>
       <div class="item-category">
-        <router-link :to="{ name: 'store', params: { id: snacks } }">
+        <router-link :to="{ name: 'store', params: { id: cigarettes } }">
           <img src="../assets/category-banners/tobacco-banner.jpg" alt="banner-img" class="category-img">
           <div class="overlay-bot">
             <div class="overlay-text">
@@ -80,12 +80,56 @@ export default {
       alc: '158e839ad0f4f057f869',
       soda: '7873dbcb044096724539',
       snacks: '56d2ce3d37ad758ef7a9',
+      hot: '70401304a345b243b4d5',
+      cigarettes: '7ff4310b835b4a4988e8',
+      meals: 'aee8eea4a5b8e34e819d'
     }
   },
 }
 </script>
 
 <style>
+/* Flicker effect */
+@keyframes letter-flicker {
+  0% {
+    opacity: 0.1;
+  }
+
+  2% {
+    opacity: 0.1;
+  }
+
+  4% {
+    opacity: 1;
+  }
+
+
+  19% {
+    opacity: 1;
+  }
+
+  21% {
+    opacity: 0.1;
+  }
+
+  23% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  83% {
+    opacity: 0.4;
+  }
+
+  87% {
+    opacity: 1;
+  }
+}
+
+/* Flicker effect */
 .main-top-banner {
   display: flex;
   align-items: center;

@@ -4,42 +4,49 @@
             <div class="brand-title">
                 <span class="brand-name-text">CornerShop</span>
             </div>
-            <div class="social-links">
-                <div class="social-logo"><i class="fa-brands fa-square-facebook"></i></div>
-                <div class="social-logo"><i class="fa-brands fa-square-twitter"></i></div>
-                <div class="social-logo"><i class="fa-brands fa-square-instagram"></i></div>
-                <div class="social-logo"><i class="fa-brands fa-telegram"></i></div>
-                <div class="social-logo"><i class="fa-brands fa-square-google-plus"></i></div>
+            <div class="footer-info">
+                <div class="social-links">
+                    <div class="social-logo"><i class="fa-brands fa-square-facebook"></i></div>
+                    <div class="social-logo"><i class="fa-brands fa-square-twitter"></i></div>
+                    <div class="social-logo"><i class="fa-brands fa-square-instagram"></i></div>
+                    <div class="social-logo"><i class="fa-brands fa-telegram"></i></div>
+                    <div class="social-logo"><i class="fa-brands fa-square-google-plus"></i></div>
+                </div>
+                <div class="copyrights">
+                    <span class="copyright-date">
+                        <i class="fa-regular fa-copyright"></i>
+                        {{ new Date().getFullYear() }}</span>
+                    <span class="span copyright-host">Tofig.</span>
+                    <span class="span copyright-info">All rights reserved.</span>
+                </div>
             </div>
-            <div class="footer-copyright">Copyright ©<span class="year-date">{{ yearDate }}</span>@tofa93</div>
         </div>
     </footer>
 </template>
-<script>
-export default {
-    data() {
-        return {
-            yearDate: new Date().getFullYear() + " ",
-        }
-    }
-}
-</script>
 <style scoped>
 .footer {
     display: flex;
     align-items: center;
     padding: 1rem;
     height: 100px;
-    background: #202020;
     width: 100%;
+    margin-top: .5rem;
+    border: 2px solid #202020;
+    background: #151515;
 }
 
 .footer-inner {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 100%;
     width: 100%;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .brand-title {
@@ -70,11 +77,25 @@ export default {
     color: #adb5bd;
 }
 
-.footer-copyright {
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: .5mm;
-    color: #adb5bd;
+.copyrights {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.copyright-date {
+    color: #ced4da;
+    margin-right: .3rem;
+}
+
+.copyright-host {
+    color: #ced4da;
+    margin-right: .5rem;
+}
+
+.copyright-info {
+    color: #ced4da;
 }
 
 .social-links {

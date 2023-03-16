@@ -24,6 +24,18 @@
                             <router-link :to="{ name: 'store', params: { id: snacks } }"
                                 class="panel-link">Snacks</router-link>
                         </li>
+                        <li class="panel-list-item">
+                            <router-link :to="{ name: 'store', params: { id: hot } }" class="panel-link">Hot
+                                drinks</router-link>
+                        </li>
+                        <li class="panel-list-item">
+                            <router-link :to="{ name: 'store', params: { id: meals } }"
+                                class="panel-link">Meals</router-link>
+                        </li>
+                        <li class="panel-list-item">
+                            <router-link :to="{ name: 'store', params: { id: cigarettes } }"
+                                class="panel-link">Tobacco</router-link>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -84,6 +96,9 @@ export default {
             alc: '158e839ad0f4f057f869',
             soda: '7873dbcb044096724539',
             snacks: '56d2ce3d37ad758ef7a9',
+            hot: '70401304a345b243b4d5',
+            cigarettes: '7ff4310b835b4a4988e8',
+            meals: 'aee8eea4a5b8e34e819d'
         }
     },
     methods: {
@@ -300,7 +315,7 @@ export default {
 }
 
 .item-poster {
-    height: 185px;
+    height: 215px;
     width: 100%;
     border-radius: 5px;
 }
