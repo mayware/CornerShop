@@ -9,11 +9,17 @@ const store = createStore({
   mutations: {
     addToCart(state, product) {
       state.cart.push(product)
+    },
+    removeFromCart(state, index) {
+      state.cart.splice(index, 1)
     }
   },
   actions: {
     addToCart({ commit }, item) {
       commit('addToCart', item)
+    },
+    removeFromCart({ commit }, index) {
+      commit('removeFromCart', index)
     }
   },
   getters: {
