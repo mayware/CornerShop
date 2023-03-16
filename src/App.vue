@@ -19,7 +19,12 @@ export default {
   },
   methods: {
     addToCart(product) {
-      store.commit('addToCart', product)
+      const existingProduct = store.state.cart.find(item => item.id === product.id)
+      if (existingProduct) {
+        store.commit('incrementQuantity', existingProduct)
+      } else {
+        store.commit('addToCart', product)
+      }
     },
     updateCart(cart) {
       this.cart = cart

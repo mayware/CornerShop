@@ -7,8 +7,13 @@ const store = createStore({
     cart: []
   },
   mutations: {
-    addToCart(state, product) {
-      state.cart.push(product)
+    addToCart(state, item) {
+      const cartItem = state.cart.find(i => i.id === item.id)
+      if (cartItem) {
+        cartItem.quantity++
+      } else {
+        state.cart.push({ ...item, quantity: 1 })
+      }
     },
     removeFromCart(state, index) {
       state.cart.splice(index, 1)
@@ -23,7 +28,12 @@ const store = createStore({
     }
   },
   getters: {
-    cartCount: state => state.cart.length
+    cartItemCount: state => {
+      return state.cart.reduce((total, item) => total + item.quantity, 0)
+    },
+    cartTotalPrice: state => {
+      return state.cart.reduce((total, item) => total + (item.quantity * parseFloat(item.price.replace('$', ''))), 0)
+    },
   }
 })
 

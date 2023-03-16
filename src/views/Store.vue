@@ -7,7 +7,6 @@
             <img src="../assets/bg/top-panel-banner.png" alt="" class="store-banner-img">
         </div>
         <div class="top-section-panel">
-
         </div>
         <div class="content-inner">
             <div class="side-panel">
@@ -40,18 +39,6 @@
                         <div class="item-price">
                             {{ item.price }}
                         </div>
-                        <div class="item-sale">
-                            {{ item.sale }}
-                        </div>
-                        <div class="quantity-box">
-                            <select class="qnt-field">
-                                <option class="option-select" value="1">1</option>
-                                <option class="option-select" value="2">2</option>
-                                <option class="option-select" value="3">3</option>
-                                <option class="option-select" value="4">4</option>
-                                <option class="option-select" value="5">5</option>
-                            </select>
-                        </div>
                     </div>
                     <button class="add-to-cart-btn" @click="addToCart(item)">
                         <span class="material-symbols-outlined modal-btn-icon">add_shopping_cart</span>
@@ -68,16 +55,19 @@
                 </div>
             </div>
         </div>
+        <Snackbar :showed="showed" />
     </div>
 </template>
 
 <script>
 import Modal from '../components/Modal.vue'
 import store from '@/store/store.js'
+import Snackbar from '../components/Snackbar.vue'
 
 export default {
     components: {
         Modal,
+        Snackbar
     },
     computed: {
     },
@@ -86,8 +76,11 @@ export default {
             items: [],
             itemObj: null,
             id: this.$route.params.id,
+            showed: false,
             showModal: false,
             selectedItem: null,
+            showSnackBar: false,
+            snackbarMsg: 'The item added to the cart',
             alc: '158e839ad0f4f057f869',
             soda: '7873dbcb044096724539',
             snacks: '56d2ce3d37ad758ef7a9',
@@ -101,7 +94,11 @@ export default {
         },
         addToCart(product) {
             store.commit('addToCart', product)
-        }
+            this.showed = !this.showed;
+            setTimeout(() => {
+                this.showed = false
+            }, 3000)
+        },
     },
     mounted() {
         fetch('https://api.npoint.io/' + this.id)
@@ -333,15 +330,6 @@ export default {
     color: #379237;
 }
 
-.item-sale {
-    padding: .5rem;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: .5mm;
-    border-radius: 5px;
-    color: #ffc300;
-}
-
 .add-to-cart-btn {
     display: flex;
     align-items: center;
@@ -367,23 +355,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.quantity-box {
-    display: flex;
-    align-items: center;
-}
-
-.qnt-field {
-    text-align: center;
-    height: 30px;
-    width: 50px;
-    background: #202020;
-    font-size: 16px;
-    font-weight: 700;
-    color: #ced4da;
-    border: 1px solid #343434;
-    border-radius: 5px;
 }
 
 .item-price-add-btn {
